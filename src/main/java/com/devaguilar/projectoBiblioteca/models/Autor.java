@@ -1,11 +1,11 @@
 package com.devaguilar.projectoBiblioteca.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "autores")
@@ -13,16 +13,17 @@ import java.util.Date;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(of = "id")
-public class Autor {
+public class Autor extends Base{
 
-    private Long id;
     private String apellido;
     private String nombre;
+    @Enumerated(EnumType.STRING)
     private Sexo sexo;
-    private Date fechaNacimiento;
-    private Date fechaDefuncion;
+    private LocalDate fechaNacimiento;
+    private LocalDate fechaDefuncion;
     private String nacionalidad;
+    @ManyToMany(mappedBy = "autores")
+    private List<Libro> libros;
 }
 
 enum Sexo {

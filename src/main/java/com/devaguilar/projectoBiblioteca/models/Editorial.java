@@ -1,18 +1,19 @@
 package com.devaguilar.projectoBiblioteca.models;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.*;
-
+import java.util.List;
 @Entity
 @Table(name = "editoriales")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(of = "id")
-public class Editorial {
+public class Editorial extends Base{
 
-    private Long id;
     private String nombre;
+    @ManyToMany(mappedBy = "editoriales")
+    private List<Libro> libros;
 }

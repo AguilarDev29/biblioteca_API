@@ -10,10 +10,8 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(of = "id")
-public class Usuario {
+public class Usuario extends Base{
 
-    private Long id;
     private String username;
     private String password;
     private String role;
