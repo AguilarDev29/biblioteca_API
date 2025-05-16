@@ -34,22 +34,22 @@ public class LibroService implements ILibroService {
 
     @Override
     public Libro updateLibro(Libro libro) {
-        var optionalLibro = libroRepository.findById(libro.getId());
-        if (optionalLibro.isPresent()) {
+        var libroToUpdate = libroRepository.findById(libro.getId());
+        if (libroToUpdate.isPresent()) {
 
-            if(libro.getTitulo() != null) optionalLibro.get()
+            if(libro.getTitulo() != null) libroToUpdate.get()
                     .setTitulo(libro.getTitulo());
-            if(libro.getDescripcion() != null) optionalLibro.get()
+            if(libro.getDescripcion() != null) libroToUpdate.get()
                     .setDescripcion(libro.getDescripcion());
-            if(libro.getFechaPublicacion() != null) optionalLibro.get()
+            if(libro.getFechaPublicacion() != null) libroToUpdate.get()
                     .setFechaPublicacion(libro.getFechaPublicacion());
-            if(libro.getGeneros() != null) optionalLibro.get()
+            if(libro.getGeneros() != null) libroToUpdate.get()
                     .setGeneros(libro.getGeneros());
-            if(libro.getAutores() != null) optionalLibro.get()
+            if(libro.getAutores() != null) libroToUpdate.get()
                     .setAutores(libro.getAutores());
-            if(libro.getEditoriales() != null) optionalLibro.get()
+            if(libro.getEditoriales() != null) libroToUpdate.get()
                     .setEditoriales(libro.getEditoriales());
-            if(libro.getFormatos() != null) optionalLibro.get()
+            if(libro.getFormatos() != null) libroToUpdate.get()
                     .setFormatos(libro.getFormatos());
 
             return libroRepository.save(libro);

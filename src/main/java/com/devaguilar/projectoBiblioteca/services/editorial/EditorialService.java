@@ -38,11 +38,11 @@ public class EditorialService implements IEditorialService {
     @Override
     public Editorial updateEditorial(Editorial editorial, long id) {
 
-        var optionalEditorial = editorialRepository.findById(id);
-        if(optionalEditorial.isPresent()) {
-            if(editorial.getNombre() != null) optionalEditorial.get()
+        var editorialToUpdate = editorialRepository.findById(id);
+        if(editorialToUpdate.isPresent()) {
+            if(editorial.getNombre() != null) editorialToUpdate.get()
                     .setNombre(editorial.getNombre());
-            return editorialRepository.save(optionalEditorial.get());
+            return editorialRepository.save(editorialToUpdate.get());
         }
         return null;
     }

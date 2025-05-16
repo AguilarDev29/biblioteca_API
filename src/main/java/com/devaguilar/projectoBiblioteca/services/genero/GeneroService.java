@@ -27,12 +27,12 @@ public class GeneroService implements IGeneroService {
 
     @Override
     public Genero updateGenero(Genero genero) {
-        var optionalGenero = generoRepository.findByNombre(genero.getNombre());
-        if(optionalGenero.isPresent()) {
-            if(genero.getNombre() != null) optionalGenero.get()
+        var generoToUpdate = generoRepository.findByNombre(genero.getNombre());
+        if(generoToUpdate.isPresent()) {
+            if(genero.getNombre() != null) generoToUpdate.get()
                     .setNombre(genero.getNombre());
 
-            return generoRepository.save(optionalGenero.get());
+            return generoRepository.save(generoToUpdate.get());
         }
         return null;
     }

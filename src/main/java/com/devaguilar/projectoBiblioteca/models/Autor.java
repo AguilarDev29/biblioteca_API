@@ -24,8 +24,8 @@ public class Autor extends Base{
     private String nacionalidad;
     @ManyToMany(mappedBy = "autores")
     private List<Libro> libros;
-}
 
-enum Sexo {
-    MASCULINO, FEMENINO
+    public enum Sexo {
+        MASCULINO, FEMENINO
+    }
 }

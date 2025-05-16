@@ -39,23 +39,23 @@ public class AutorService implements IAutorService {
     @Override
     public Autor updateAutor(Autor autor, long id) {
 
-        var optionalAutor = autorRepository.findById(id);
+        var autorToUpdate = autorRepository.findById(id);
 
-        if(optionalAutor.isPresent()) {
-            if(autor.getApellido() != null) optionalAutor.get()
+        if(autorToUpdate.isPresent()) {
+            if(autor.getApellido() != null) autorToUpdate.get()
                     .setApellido(autor.getApellido());
-            if(autor.getNombre() != null) optionalAutor.get()
+            if(autor.getNombre() != null) autorToUpdate.get()
                     .setNombre(autor.getNombre());
-            if(autor.getSexo() != null) optionalAutor.get()
+            if(autor.getSexo() != null) autorToUpdate.get()
                     .setSexo(autor.getSexo());
-            if(autor.getFechaNacimiento() != null) optionalAutor.get()
+            if(autor.getFechaNacimiento() != null) autorToUpdate.get()
                     .setFechaNacimiento(autor.getFechaNacimiento());
-            if(autor.getFechaDefuncion() != null) optionalAutor.get()
+            if(autor.getFechaDefuncion() != null) autorToUpdate.get()
                     .setFechaDefuncion(autor.getFechaDefuncion());
-            if(autor.getNacionalidad() != null) optionalAutor.get()
+            if(autor.getNacionalidad() != null) autorToUpdate.get()
                     .setNacionalidad(autor.getNacionalidad());
 
-            return autorRepository.save(optionalAutor.get());
+            return autorRepository.save(autorToUpdate.get());
         }
         return null;
     }

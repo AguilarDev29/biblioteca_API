@@ -40,8 +40,9 @@ public class Libro extends Base{
     private Set<TipoFormato> formatos = new HashSet<>();
     @OneToMany(mappedBy = "libro")
     private List<Prestamo> prestamos;
+
+    public enum TipoFormato{
+        DIGITAL, FISICO, AUDIOLIBRO
+    }
 }
 
-enum TipoFormato{
-    DIGITAL, FISICO, AUDIOLIBRO
-}
