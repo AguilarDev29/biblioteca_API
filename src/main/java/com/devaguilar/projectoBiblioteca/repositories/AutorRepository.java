@@ -8,8 +8,8 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface AutorRepository extends JpaRepository<Autor, Long> {
-    @Query(value = "SELECT CONCAT(apellido, ' ', nombre) AS fullName " +
-            "FROM autores WHERE fullName = :fullName", nativeQuery = true)
-    List<Autor> findByApellidoAndNombre(String fullName);
+    @Query(value = "SELECT a  " +
+            "FROM autores a WHERE CONCAT(apellido, ' ', nombre) = LIKE %?1%")
+    List<Autor> getByFullName(String fullName);
 
 }

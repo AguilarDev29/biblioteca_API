@@ -10,7 +10,7 @@ public interface IPrestamoService {
 
     List<Prestamo> getAllPrestamo();
 
-    void savePrestamo(Prestamo prestamo);
+    Prestamo savePrestamo(Prestamo prestamo);
 
     Prestamo updatePrestamo(Prestamo prestamo, long id);
 

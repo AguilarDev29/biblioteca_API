@@ -10,7 +10,7 @@ public interface IEditorialService {
 
     List<Editorial> getAllEditorial();
 
-    void saveEditorial(Editorial editorial);
+    Editorial saveEditorial(Editorial editorial);
 
     Editorial updateEditorial(Editorial editorial, long id);
 

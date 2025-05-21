@@ -4,6 +4,8 @@ import com.devaguilar.projectoBiblioteca.models.Usuario;
 import com.devaguilar.projectoBiblioteca.repositories.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UsuarioService implements IUsuarioService {
 
@@ -11,6 +13,11 @@ public class UsuarioService implements IUsuarioService {
 
     public UsuarioService(UsuarioRepository usuarioRepository) {
         this.usuarioRepository = usuarioRepository;
+    }
+
+    @Override
+    public List<Usuario> getAllUsuarios() {
+        return usuarioRepository.findAll();
     }
 
     @Override
@@ -24,8 +31,8 @@ public class UsuarioService implements IUsuarioService {
     }
 
     @Override
-    public void saveUsuario(Usuario usuario) {
-        usuarioRepository.save(usuario);
+    public Usuario saveUsuario(Usuario usuario) {
+        return usuarioRepository.save(usuario);
     }
 
     @Override

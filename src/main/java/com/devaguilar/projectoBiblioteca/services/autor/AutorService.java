@@ -23,7 +23,7 @@ public class AutorService implements IAutorService {
 
     @Override
     public List<Autor> getAutorByFullName(String fullName) {
-        return autorRepository.findByApellidoAndNombre(fullName);
+        return autorRepository.getByFullName(fullName);
     }
 
     @Override
@@ -32,8 +32,8 @@ public class AutorService implements IAutorService {
     }
 
     @Override
-    public void saveAutor(Autor autor) {
-        autorRepository.save(autor);
+    public Autor saveAutor(Autor autor) {
+        return autorRepository.save(autor);
     }
 
     @Override

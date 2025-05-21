@@ -11,7 +11,7 @@ public interface IAutorService {
 
     List<Autor> getAllAutor();
 
-    void saveAutor(Autor autor);
+    Autor saveAutor(Autor autor);
 
     Autor updateAutor(Autor autor, long id);
 

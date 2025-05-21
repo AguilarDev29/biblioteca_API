@@ -26,16 +26,16 @@ public class PrestamoService implements IPrestamoService{
     }
 
     @Override
-    public void savePrestamo(Prestamo prestamo) {
-        prestamoRepository.save(prestamo);
+    public Prestamo savePrestamo(Prestamo prestamo) {
+        return prestamoRepository.save(prestamo);
     }
 
     @Override
     public Prestamo updatePrestamo(Prestamo prestamo, long id) {
         var prestamoToUpdate = prestamoRepository.findById(id);
         if(prestamoToUpdate.isPresent()){
-            if(prestamoToUpdate.get().getFecha_limite() != null) prestamoToUpdate.get()
-                    .setFecha_limite(prestamo.getFecha_limite());
+            if(prestamoToUpdate.get().getFechaLimite() != null) prestamoToUpdate.get()
+                    .setFechaLimite(prestamo.getFechaLimite());
             if(prestamoToUpdate.get().getLibro() != null) prestamoToUpdate.get()
                     .setLibro(prestamo.getLibro());
             return prestamoRepository.save(prestamoToUpdate.get());
@@ -46,8 +46,10 @@ public class PrestamoService implements IPrestamoService{
     @Override
     public void cancelarPrestamo(long id) {
         var prestamo = prestamoRepository.findById(id);
-        prestamo.ifPresent(value -> value
-                .setEstado(Prestamo.EstadoPrestamo.DEVUELTO));
+        if(prestamo.isPresent()){
+            prestamo.get().setEstado(Prestamo.EstadoPrestamo.DEVUELTO);
+            prestamoRepository.save(prestamo.get());
+        }
     }
 
     @Override

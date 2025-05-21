@@ -21,8 +21,13 @@ public class GeneroService implements IGeneroService {
     }
 
     @Override
-    public void saveGenero(Genero genero) {
-        generoRepository.save(genero);
+    public List<Genero> getGeneroByLibro(String libro) {
+        return generoRepository.findByLibrosTitulo(libro);
+    }
+
+    @Override
+    public Genero saveGenero(Genero genero) {
+        return generoRepository.save(genero);
     }
 
     @Override

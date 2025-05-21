@@ -7,7 +7,9 @@ public interface IGeneroService {
 
     List<Genero> getAllGenero();
 
-    void saveGenero(Genero genero);
+    List<Genero> getGeneroByLibro(String libro);
+
+    Genero saveGenero(Genero genero);
 
     Genero updateGenero(Genero genero);
 

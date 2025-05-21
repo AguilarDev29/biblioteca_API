@@ -31,8 +31,8 @@ public class EditorialService implements IEditorialService {
     }
 
     @Override
-    public void saveEditorial(Editorial editorial) {
-        editorialRepository.save(editorial);
+    public Editorial saveEditorial(Editorial editorial) {
+        return editorialRepository.save(editorial);
     }
 
     @Override

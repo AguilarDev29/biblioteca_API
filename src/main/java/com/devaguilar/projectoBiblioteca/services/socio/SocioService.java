@@ -4,6 +4,8 @@ import com.devaguilar.projectoBiblioteca.models.Socio;
 import com.devaguilar.projectoBiblioteca.repositories.SocioRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class SocioService implements ISocioService {
 
@@ -11,6 +13,11 @@ public class SocioService implements ISocioService {
 
     public SocioService(SocioRepository socioRepository) {
         this.socioRepository = socioRepository;
+    }
+
+    @Override
+    public List<Socio> getAllSocio() {
+        return socioRepository.findAll();
     }
 
     @Override
@@ -24,8 +31,8 @@ public class SocioService implements ISocioService {
     }
 
     @Override
-    public void saveSocio(Socio socio) {
-        socioRepository.save(socio);
+    public Socio saveSocio(Socio socio) {
+        return socioRepository.save(socio);
     }
 
     @Override
@@ -38,8 +45,8 @@ public class SocioService implements ISocioService {
                     .setNombre(socio.getNombre());
             if(socio.getDni() != null) socioToUpdate.get()
                     .setDni(socio.getDni());
-            if(socio.getFecha_nacimiento() != null) socioToUpdate.get()
-                    .setFecha_nacimiento(socio.getFecha_nacimiento());
+            if(socio.getFechaNacimiento() != null) socioToUpdate.get()
+                    .setFechaNacimiento(socio.getFechaNacimiento());
             if(socio.getEmail() != null) socioToUpdate.get()
                     .setEmail(socio.getEmail());
             if(socio.getTelefono() != null) socioToUpdate.get()

@@ -6,11 +6,21 @@ import java.util.List;
 
 public interface ILibroService {
 
-    List<Libro> getLibroByTitulo(String titulo);
+    Libro getLibroById(Long id);
 
     List<Libro> getAllLibros();
 
-    void saveLibro(Libro libro);
+    List<Libro> getByTitulo(String titulo);
+
+    List<Libro> getByAutor(String autor);
+
+    List<Libro> getByGenero(String genero);
+
+    List<Libro> getByEditorial(String editorial);
+
+    List<Libro> getByFormato(String formato);
+
+    Libro saveLibro(Libro libro);
 
     Libro updateLibro(Libro libro);
 

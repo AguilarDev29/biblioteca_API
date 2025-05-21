@@ -16,10 +16,8 @@ public class LibroService implements ILibroService {
     }
 
     @Override
-    public List<Libro> getLibroByTitulo(String titulo) {
-        return libroRepository.findByTitulo(titulo.toLowerCase())
-                .stream().map(l -> l.getTitulo()
-                        .contains(titulo) ? l : null).toList();
+    public Libro getLibroById(Long id) {
+        return libroRepository.findById(id).orElse(null);
     }
 
     @Override
@@ -28,8 +26,33 @@ public class LibroService implements ILibroService {
     }
 
     @Override
-    public void saveLibro(Libro libro) {
-        libroRepository.save(libro);
+    public List<Libro> getByTitulo(String titulo) {
+        return libroRepository.findByTitulo(titulo);
+    }
+
+    @Override
+    public List<Libro> getByAutor(String autor) {
+        return libroRepository.getByAutorFullName(autor);
+    }
+
+    @Override
+    public List<Libro> getByGenero(String genero) {
+        return libroRepository.findByGeneroNombre(genero);
+    }
+
+    @Override
+    public List<Libro> getByEditorial(String editorial) {
+        return libroRepository.findByEditorialNombre(editorial);
+    }
+
+    @Override
+    public List<Libro> getByFormato(String formato) {
+        return libroRepository.findByFormatos(formato);
+    }
+
+    @Override
+    public Libro saveLibro(Libro libro) {
+        return libroRepository.save(libro);
     }
 
     @Override
@@ -64,11 +87,11 @@ public class LibroService implements ILibroService {
 
     @Override
     public String updateStock(Long id, int stock) {
-        var optionalLibro = libroRepository.findById(id);
-        if(optionalLibro.isPresent()) {
-            optionalLibro.get().setStock(stock);
-            libroRepository.save(optionalLibro.get());
-            return "Stock actualizado: " + optionalLibro.get()
+        var libroToUpdate = libroRepository.findById(id);
+        if(libroToUpdate.isPresent()) {
+            libroToUpdate.get().setStock(stock);
+            libroRepository.save(libroToUpdate.get());
+            return "Stock actualizado: " + libroToUpdate.get()
                     .getStock() + " unidades";
         }
         return "Stock no actualizado";
