@@ -1,6 +1,6 @@
 package com.devaguilar.projectoBiblioteca.controllers;
 
-import com.devaguilar.projectoBiblioteca.models.Prestamo;
+import com.devaguilar.projectoBiblioteca.models.prestamo.Prestamo;
 import com.devaguilar.projectoBiblioteca.services.prestamo.IPrestamoService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

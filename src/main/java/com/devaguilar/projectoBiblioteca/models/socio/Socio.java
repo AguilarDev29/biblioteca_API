@@ -1,5 +1,7 @@
-package com.devaguilar.projectoBiblioteca.models;
+package com.devaguilar.projectoBiblioteca.models.socio;
 
+import com.devaguilar.projectoBiblioteca.models.Base;
+import com.devaguilar.projectoBiblioteca.models.prestamo.Prestamo;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
@@ -9,7 +11,6 @@ import lombok.*;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Date;
 
 @Entity
 @Table(name = "socios")
@@ -18,7 +19,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Socio extends Base{
+public class Socio extends Base {
     @NotBlank
     @Max(100)
     @Column(length = 100)

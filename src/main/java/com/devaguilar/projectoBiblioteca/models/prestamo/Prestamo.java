@@ -1,14 +1,14 @@
-package com.devaguilar.projectoBiblioteca.models;
+package com.devaguilar.projectoBiblioteca.models.prestamo;
 
+import com.devaguilar.projectoBiblioteca.models.Base;
+import com.devaguilar.projectoBiblioteca.models.socio.Socio;
+import com.devaguilar.projectoBiblioteca.models.libro.Libro;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jdk.jfr.Period;
 import lombok.*;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Entity
 @Table(name = "prestamos")
@@ -17,7 +17,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Prestamo extends Base{
+public class Prestamo extends Base {
     @NotBlank
     @Column(name = "fecha_prestamo")
     private LocalDateTime fechaPrestamo = LocalDateTime.now();

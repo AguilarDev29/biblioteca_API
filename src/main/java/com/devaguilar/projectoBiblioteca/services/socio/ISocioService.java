@@ -1,6 +1,6 @@
 package com.devaguilar.projectoBiblioteca.services.socio;
 
-import com.devaguilar.projectoBiblioteca.models.Socio;
+import com.devaguilar.projectoBiblioteca.models.socio.Socio;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.devaguilar.projectoBiblioteca.controllers;
 
-import com.devaguilar.projectoBiblioteca.models.Genero;
+import com.devaguilar.projectoBiblioteca.models.genero.Genero;
 import com.devaguilar.projectoBiblioteca.services.genero.IGeneroService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

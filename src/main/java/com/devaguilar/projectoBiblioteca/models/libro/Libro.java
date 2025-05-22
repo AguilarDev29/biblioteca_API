@@ -1,5 +1,10 @@
-package com.devaguilar.projectoBiblioteca.models;
+package com.devaguilar.projectoBiblioteca.models.libro;
 
+import com.devaguilar.projectoBiblioteca.models.Base;
+import com.devaguilar.projectoBiblioteca.models.prestamo.Prestamo;
+import com.devaguilar.projectoBiblioteca.models.autor.Autor;
+import com.devaguilar.projectoBiblioteca.models.editorial.Editorial;
+import com.devaguilar.projectoBiblioteca.models.genero.Genero;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.Max;
@@ -10,7 +15,6 @@ import lombok.*;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -20,7 +24,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Libro extends Base{
+public class Libro extends Base {
     @NotBlank
     @Max(50)
     @Column(length = 50)

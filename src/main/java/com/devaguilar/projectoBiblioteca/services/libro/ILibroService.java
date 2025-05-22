@@ -1,6 +1,6 @@
 package com.devaguilar.projectoBiblioteca.services.libro;
 
-import com.devaguilar.projectoBiblioteca.models.Libro;
+import com.devaguilar.projectoBiblioteca.models.libro.Libro;
 import java.util.List;
 
 

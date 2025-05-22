@@ -1,6 +1,6 @@
 package com.devaguilar.projectoBiblioteca.services.autor;
 
-import com.devaguilar.projectoBiblioteca.models.Autor;
+import com.devaguilar.projectoBiblioteca.models.autor.Autor;
 import com.devaguilar.projectoBiblioteca.repositories.AutorRepository;
 import org.springframework.stereotype.Service;
 

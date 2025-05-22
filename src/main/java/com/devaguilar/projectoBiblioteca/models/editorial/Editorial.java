@@ -1,5 +1,7 @@
-package com.devaguilar.projectoBiblioteca.models;
+package com.devaguilar.projectoBiblioteca.models.editorial;
 
+import com.devaguilar.projectoBiblioteca.models.Base;
+import com.devaguilar.projectoBiblioteca.models.libro.Libro;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
@@ -14,7 +16,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Editorial extends Base{
+public class Editorial extends Base {
     @NotBlank
     @Max(100)
     @Column(length = 100)

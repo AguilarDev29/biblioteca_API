@@ -1,11 +1,12 @@
 package com.devaguilar.projectoBiblioteca.controllers;
 
-import com.devaguilar.projectoBiblioteca.models.Autor;
+import com.devaguilar.projectoBiblioteca.models.autor.Autor;
+import com.devaguilar.projectoBiblioteca.models.autor.dto.DtoAutorCreateUpdate;
 import com.devaguilar.projectoBiblioteca.services.autor.IAutorService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -33,7 +34,7 @@ public class AutorController {
         return ResponseEntity.ok(autorService.getAutorById(id));
     }
 
-    @GetMapping
+    @GetMapping("/search/")
     public ResponseEntity<List<Autor>> getAutorByFullName(@RequestParam(name = "fullname" )
                                                               String fullname) {
 
@@ -45,18 +46,24 @@ public class AutorController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Autor> saveAutor(@RequestBody Autor autor) {
-        return ResponseEntity.ok(autorService.saveAutor(autor));
+    public ResponseEntity<Autor> saveAutor(@RequestBody @Valid DtoAutorCreateUpdate autor) {
+        if(autor == null) return ResponseEntity.badRequest().build();
+        return ResponseEntity.ok(autorService.saveAutor(new Autor(autor)));
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Autor> updateAutor(@RequestBody Autor autor,
+    public ResponseEntity<Autor> updateAutor(@RequestBody @Valid DtoAutorCreateUpdate autor,
                                              @PathVariable Long id) {
-        return ResponseEntity.ok(autorService.updateAutor(autor, id));
+        if(autor == null) return ResponseEntity.badRequest().build();
+        return ResponseEntity.ok(autorService.updateAutor(new Autor(autor), id));
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteAutor(@PathVariable Long id) {
+
+        if(autorService.getAutorById(id) == null)
+            return ResponseEntity.notFound().build();
+
         autorService.deleteAutor(id);
         return ResponseEntity.noContent().build();
     }

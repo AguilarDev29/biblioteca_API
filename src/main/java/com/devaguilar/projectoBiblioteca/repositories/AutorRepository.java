@@ -1,6 +1,6 @@
 package com.devaguilar.projectoBiblioteca.repositories;
 
-import com.devaguilar.projectoBiblioteca.models.Autor;
+import com.devaguilar.projectoBiblioteca.models.autor.Autor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

@@ -1,6 +1,6 @@
 package com.devaguilar.projectoBiblioteca.controllers;
 
-import com.devaguilar.projectoBiblioteca.models.Usuario;
+import com.devaguilar.projectoBiblioteca.models.usuario.Usuario;
 import com.devaguilar.projectoBiblioteca.services.usuario.IUsuarioService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

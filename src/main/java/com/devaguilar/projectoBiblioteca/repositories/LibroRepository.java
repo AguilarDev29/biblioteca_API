@@ -1,6 +1,6 @@
 package com.devaguilar.projectoBiblioteca.repositories;
 
-import com.devaguilar.projectoBiblioteca.models.Libro;
+import com.devaguilar.projectoBiblioteca.models.libro.Libro;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

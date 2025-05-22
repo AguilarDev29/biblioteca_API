@@ -1,5 +1,7 @@
-package com.devaguilar.projectoBiblioteca.models;
+package com.devaguilar.projectoBiblioteca.models.genero;
 
+import com.devaguilar.projectoBiblioteca.models.Base;
+import com.devaguilar.projectoBiblioteca.models.libro.Libro;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
@@ -16,7 +18,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Genero extends Base{
+public class Genero extends Base {
     @NotBlank
     @Max(100)
     @Column(length = 100)

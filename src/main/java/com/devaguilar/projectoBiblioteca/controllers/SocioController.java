@@ -1,6 +1,6 @@
 package com.devaguilar.projectoBiblioteca.controllers;
 
-import com.devaguilar.projectoBiblioteca.models.Socio;
+import com.devaguilar.projectoBiblioteca.models.socio.Socio;
 import com.devaguilar.projectoBiblioteca.services.socio.ISocioService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

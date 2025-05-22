@@ -1,6 +1,6 @@
 package com.devaguilar.projectoBiblioteca.services.libro;
 
-import com.devaguilar.projectoBiblioteca.models.Libro;
+import com.devaguilar.projectoBiblioteca.models.libro.Libro;
 import com.devaguilar.projectoBiblioteca.repositories.LibroRepository;
 import org.springframework.stereotype.Service;
 
@@ -89,7 +89,7 @@ public class LibroService implements ILibroService {
     public String updateStock(Long id, int stock) {
         var libroToUpdate = libroRepository.findById(id);
         if(libroToUpdate.isPresent()) {
-            libroToUpdate.get().setStock(stock);
+            libroToUpdate.get().setStock(libroToUpdate.get().getStock() + stock);
             libroRepository.save(libroToUpdate.get());
             return "Stock actualizado: " + libroToUpdate.get()
                     .getStock() + " unidades";

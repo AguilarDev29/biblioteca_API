@@ -1,6 +1,6 @@
 package com.devaguilar.projectoBiblioteca.services.genero;
 
-import com.devaguilar.projectoBiblioteca.models.Genero;
+import com.devaguilar.projectoBiblioteca.models.genero.Genero;
 import java.util.List;
 
 public interface IGeneroService {

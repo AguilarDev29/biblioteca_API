@@ -1,6 +1,6 @@
 package com.devaguilar.projectoBiblioteca.controllers;
 
-import com.devaguilar.projectoBiblioteca.models.Editorial;
+import com.devaguilar.projectoBiblioteca.models.editorial.Editorial;
 import com.devaguilar.projectoBiblioteca.services.editorial.IEditorialService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

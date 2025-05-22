@@ -1,6 +1,6 @@
 package com.devaguilar.projectoBiblioteca.services.editorial;
 
-import com.devaguilar.projectoBiblioteca.models.Editorial;
+import com.devaguilar.projectoBiblioteca.models.editorial.Editorial;
 import com.devaguilar.projectoBiblioteca.repositories.EditorialRepository;
 import org.springframework.stereotype.Service;
 

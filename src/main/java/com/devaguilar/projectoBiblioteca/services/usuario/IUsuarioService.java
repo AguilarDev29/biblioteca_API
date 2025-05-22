@@ -1,6 +1,6 @@
 package com.devaguilar.projectoBiblioteca.services.usuario;
 
-import com.devaguilar.projectoBiblioteca.models.Usuario;
+import com.devaguilar.projectoBiblioteca.models.usuario.Usuario;
 
 import java.util.List;
 

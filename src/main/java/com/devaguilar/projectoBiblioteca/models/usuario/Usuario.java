@@ -1,5 +1,6 @@
-package com.devaguilar.projectoBiblioteca.models;
+package com.devaguilar.projectoBiblioteca.models.usuario;
 
+import com.devaguilar.projectoBiblioteca.models.Base;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -12,7 +13,7 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Usuario extends Base{
+public class Usuario extends Base {
     @NotBlank
     @Column(length = 100)
     private String username;

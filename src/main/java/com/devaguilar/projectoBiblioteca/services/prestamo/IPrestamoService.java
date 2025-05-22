@@ -1,6 +1,6 @@
 package com.devaguilar.projectoBiblioteca.services.prestamo;
 
-import com.devaguilar.projectoBiblioteca.models.Prestamo;
+import com.devaguilar.projectoBiblioteca.models.prestamo.Prestamo;
 
 import java.util.List;
 

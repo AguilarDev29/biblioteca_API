@@ -1,6 +1,6 @@
 package com.devaguilar.projectoBiblioteca.services.usuario;
 
-import com.devaguilar.projectoBiblioteca.models.Usuario;
+import com.devaguilar.projectoBiblioteca.models.usuario.Usuario;
 import com.devaguilar.projectoBiblioteca.repositories.UsuarioRepository;
 import org.springframework.stereotype.Service;
 

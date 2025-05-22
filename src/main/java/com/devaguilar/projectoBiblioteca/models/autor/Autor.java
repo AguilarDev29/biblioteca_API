@@ -1,5 +1,8 @@
-package com.devaguilar.projectoBiblioteca.models;
+package com.devaguilar.projectoBiblioteca.models.autor;
 
+import com.devaguilar.projectoBiblioteca.models.Base;
+import com.devaguilar.projectoBiblioteca.models.autor.dto.DtoAutorCreateUpdate;
+import com.devaguilar.projectoBiblioteca.models.libro.Libro;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.Max;
@@ -15,7 +18,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Autor extends Base{
+public class Autor extends Base {
 
     @NotBlank
     @Max(100)
@@ -41,6 +44,15 @@ public class Autor extends Base{
     private String nacionalidad;
     @ManyToMany(mappedBy = "autores")
     private List<Libro> libros;
+
+    public Autor(DtoAutorCreateUpdate autor) {
+        this.apellido = autor.apellido();
+        this.nombre = autor.nombre();
+        this.sexo = autor.sexo().equals("MASCULINO") ? Sexo.MASCULINO : Sexo.FEMENINO;
+        this.fechaNacimiento = autor.fechaNacimiento();
+        this.fechaDefuncion = autor.fechaDefuncion();
+        this.nacionalidad = autor.nacionalidad();
+    }
 
     public enum Sexo {
         MASCULINO, FEMENINO

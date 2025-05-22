@@ -1,6 +1,6 @@
 package com.devaguilar.projectoBiblioteca.repositories;
 
-import com.devaguilar.projectoBiblioteca.models.Genero;
+import com.devaguilar.projectoBiblioteca.models.genero.Genero;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
