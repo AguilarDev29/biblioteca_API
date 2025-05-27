@@ -14,6 +14,10 @@ public interface IPrestamoService {
 
     Prestamo updatePrestamo(Prestamo prestamo, long id);
 
+    String plusDays(Long id,int days);
+
+    String minusDays(Long id, int days);
+
     void cancelarPrestamo(long id);
 
     void deletePrestamo(long id);

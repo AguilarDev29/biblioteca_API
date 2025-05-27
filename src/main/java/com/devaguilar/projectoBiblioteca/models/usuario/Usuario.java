@@ -7,6 +7,10 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 @Entity
 @Table(name = "usuarios")
 @Getter
@@ -19,7 +23,7 @@ public class Usuario extends Base {
     private String username;
     @NotBlank
     private String password;
-    private Role role = Role.USER;
+    private List<Role> roles = new ArrayList<>(List.of(Role.USER));
 
     enum Role {
         ADMIN, USER, DEV

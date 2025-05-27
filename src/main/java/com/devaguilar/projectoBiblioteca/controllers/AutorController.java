@@ -31,10 +31,10 @@ public class AutorController {
 
         if (autor == null) return ResponseEntity.notFound().build();
 
-        return ResponseEntity.ok(autorService.getAutorById(id));
+        return ResponseEntity.ok(autor);
     }
 
-    @GetMapping("/search/")
+    @GetMapping("/search")
     public ResponseEntity<List<Autor>> getAutorByFullName(@RequestParam(name = "fullname" )
                                                               String fullname) {
 
@@ -42,27 +42,30 @@ public class AutorController {
 
         if (autor == null) return ResponseEntity.notFound().build();
 
-        return ResponseEntity.ok(autorService.getAutorByFullName(fullname));
+        return ResponseEntity.ok(autor);
     }
 
     @PostMapping("/create")
     public ResponseEntity<Autor> saveAutor(@RequestBody @Valid DtoAutorCreateUpdate autor) {
+
         if(autor == null) return ResponseEntity.badRequest().build();
+
         return ResponseEntity.ok(autorService.saveAutor(new Autor(autor)));
     }
 
     @PutMapping("/update/{id}")
     public ResponseEntity<Autor> updateAutor(@RequestBody @Valid DtoAutorCreateUpdate autor,
                                              @PathVariable Long id) {
+
         if(autor == null) return ResponseEntity.badRequest().build();
+
         return ResponseEntity.ok(autorService.updateAutor(new Autor(autor), id));
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteAutor(@PathVariable Long id) {
 
-        if(autorService.getAutorById(id) == null)
-            return ResponseEntity.notFound().build();
+        if(autorService.getAutorById(id) == null) return ResponseEntity.notFound().build();
 
         autorService.deleteAutor(id);
         return ResponseEntity.noContent().build();

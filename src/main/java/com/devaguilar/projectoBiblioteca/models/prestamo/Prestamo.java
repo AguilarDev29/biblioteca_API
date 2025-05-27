@@ -1,6 +1,7 @@
 package com.devaguilar.projectoBiblioteca.models.prestamo;
 
 import com.devaguilar.projectoBiblioteca.models.Base;
+import com.devaguilar.projectoBiblioteca.models.prestamo.dto.DtoPrestamoUpdate;
 import com.devaguilar.projectoBiblioteca.models.socio.Socio;
 import com.devaguilar.projectoBiblioteca.models.libro.Libro;
 import jakarta.persistence.*;
@@ -34,6 +35,11 @@ public class Prestamo extends Base {
     @JoinColumn(name = "id_libro")
     @NotNull
     private Libro libro;
+
+    public Prestamo(DtoPrestamoUpdate prestamo) {
+        this.socio = prestamo.socio();
+        this.libro = prestamo.libro();
+    }
 
     public enum EstadoPrestamo {
         ACTIVO,

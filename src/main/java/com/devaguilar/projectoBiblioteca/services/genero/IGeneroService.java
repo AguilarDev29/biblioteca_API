@@ -7,11 +7,15 @@ public interface IGeneroService {
 
     List<Genero> getAllGenero();
 
+    Genero getGeneroById(Long id);
+
     List<Genero> getGeneroByLibro(String libro);
 
     Genero saveGenero(Genero genero);
 
-    Genero updateGenero(Genero genero);
+    Genero updateGenero(Genero genero, Long id);
 
-    void deleteGeneroByNombre(String nombre);
+    void deleteGenero(Long id);
+
+
 }

@@ -1,6 +1,7 @@
 package com.devaguilar.projectoBiblioteca.models.genero;
 
 import com.devaguilar.projectoBiblioteca.models.Base;
+import com.devaguilar.projectoBiblioteca.models.genero.dto.DtoGeneroCreateUpdate;
 import com.devaguilar.projectoBiblioteca.models.libro.Libro;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -25,4 +26,8 @@ public class Genero extends Base {
     private String nombre;
     @ManyToMany(mappedBy = "generos")
     private List<Libro> libros;
+
+    public Genero(DtoGeneroCreateUpdate genero) {
+        this.nombre = genero.nombre();
+    }
 }

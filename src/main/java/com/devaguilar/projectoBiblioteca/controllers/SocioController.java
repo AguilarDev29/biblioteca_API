@@ -23,18 +23,18 @@ public class SocioController {
     }
 
     @GetMapping("/search/{id}")
-    public ResponseEntity<Socio> getSocioById(Long id){
-        var socio = socioService.getSocioById(id);
+    public ResponseEntity<Socio> getSocioById(@PathVariable Long id){
 
+        var socio = socioService.getSocioById(id);
         if(socio == null) return ResponseEntity.notFound().build();
 
         return ResponseEntity.ok(socio);
     }
 
-    @GetMapping("/search/")
-    public ResponseEntity<Socio> getSocioByDni(String dni){
-        var socio = socioService.getSocioByDni(dni);
+    @GetMapping("/search")
+    public ResponseEntity<Socio> getSocioByDni(@RequestParam(name = "dni") String dni){
 
+        var socio = socioService.getSocioByDni(dni);
         if(socio == null) return ResponseEntity.notFound().build();
 
         return ResponseEntity.ok(socioService.getSocioByDni(dni));
@@ -42,17 +42,26 @@ public class SocioController {
 
     @PostMapping("/create")
     public ResponseEntity<Socio> saveSocio(@RequestBody Socio socio) {
+
+        if(socio == null) return ResponseEntity.notFound().build();
+
         return ResponseEntity.ok(socioService.saveSocio(socio));
     }
 
     @PutMapping("/update/{id}")
     public ResponseEntity<Socio> updateSocio(@RequestBody Socio socio,
                                              @PathVariable Long id) {
+
+        if(socioService.getSocioById(id) == null) return ResponseEntity.notFound().build();
+
         return ResponseEntity.ok(socioService.updateSocio(socio, id));
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteSocio(@PathVariable Long id) {
+
+        if(socioService.getSocioById(id) == null) return ResponseEntity.notFound().build();
+
         socioService.deleteSocio(id);
         return ResponseEntity.ok().build();
     }

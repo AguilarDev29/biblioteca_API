@@ -34,13 +34,35 @@ public class PrestamoService implements IPrestamoService{
     public Prestamo updatePrestamo(Prestamo prestamo, long id) {
         var prestamoToUpdate = prestamoRepository.findById(id);
         if(prestamoToUpdate.isPresent()){
-            if(prestamoToUpdate.get().getFechaLimite() != null) prestamoToUpdate.get()
-                    .setFechaLimite(prestamo.getFechaLimite());
             if(prestamoToUpdate.get().getLibro() != null) prestamoToUpdate.get()
                     .setLibro(prestamo.getLibro());
+            if(prestamoToUpdate.get().getSocio() != null) prestamoToUpdate.get()
+                    .setSocio(prestamo.getSocio());
             return prestamoRepository.save(prestamoToUpdate.get());
         }
         return null;
+    }
+
+    @Override
+    public String plusDays(Long id, int days) {
+        var prestamo = prestamoRepository.findById(id);
+        if(prestamo.isPresent()){
+            prestamo.get().setFechaLimite(prestamo.get().getFechaLimite().plusDays(days));
+            prestamoRepository.save(prestamo.get());
+            return "Fecha limite actualizada: " + prestamo.get().getFechaLimite();
+        }
+        return "No se encontro el prestamo";
+    }
+
+    @Override
+    public String minusDays(Long id, int days) {
+        var prestamo = prestamoRepository.findById(id);
+        if(prestamo.isPresent()){
+            prestamo.get().setFechaLimite(prestamo.get().getFechaLimite().minusDays(days));
+            prestamoRepository.save(prestamo.get());
+            return "Fecha limite actualizada: " + prestamo.get().getFechaLimite();
+        }
+        return "No se encontro el prestamo";
     }
 
     @Override

@@ -1,7 +1,9 @@
 package com.devaguilar.projectoBiblioteca.controllers;
 
 import com.devaguilar.projectoBiblioteca.models.genero.Genero;
+import com.devaguilar.projectoBiblioteca.models.genero.dto.DtoGeneroCreateUpdate;
 import com.devaguilar.projectoBiblioteca.services.genero.IGeneroService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,29 +24,35 @@ public class GeneroController {
         return ResponseEntity.ok(generoService.getAllGenero());
     }
 
-    @GetMapping("/seach/")
+    @GetMapping("/search")
     public ResponseEntity<List<Genero>> getGeneroByLibro(@RequestParam(name = "libro")
                                                              String libro) {
         var genero = generoService.getGeneroByLibro(libro);
-
         if(genero == null) return ResponseEntity.notFound().build();
-        return ResponseEntity.ok(generoService.getGeneroByLibro(libro));
+
+        return ResponseEntity.ok(genero);
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Genero> saveGenero(@RequestBody Genero genero) {
-        return ResponseEntity.ok(generoService.saveGenero(genero));
+    public ResponseEntity<Genero> saveGenero(@RequestBody DtoGeneroCreateUpdate genero) {
+
+        if(genero == null) return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(generoService.saveGenero(new Genero(genero)));
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Genero> updateGenero(@RequestBody Genero genero,
+    public ResponseEntity<Genero> updateGenero(@RequestBody @Valid DtoGeneroCreateUpdate genero,
                                                @PathVariable Long id) {
-        return ResponseEntity.ok(generoService.updateGenero(genero));
+        if(generoService.getGeneroById(id) == null) return ResponseEntity.notFound().build();
+
+        return ResponseEntity.ok(generoService.updateGenero(new Genero(genero), id));
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteGenero(@PathVariable Long id) {
-        generoService.deleteGeneroByNombre(id.toString());
+
+        if(generoService.getGeneroById(id) == null) return ResponseEntity.notFound().build();
+        generoService.deleteGenero(id);
         return ResponseEntity.noContent().build();
     }
 }

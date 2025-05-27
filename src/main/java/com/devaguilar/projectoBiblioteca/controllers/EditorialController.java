@@ -1,7 +1,9 @@
 package com.devaguilar.projectoBiblioteca.controllers;
 
 import com.devaguilar.projectoBiblioteca.models.editorial.Editorial;
+import com.devaguilar.projectoBiblioteca.models.editorial.dto.DtoEditorialCreateUpdate;
 import com.devaguilar.projectoBiblioteca.services.editorial.IEditorialService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,33 +30,39 @@ public class EditorialController {
         var editorial = editorialService.getEditorialById(id);
         if(editorial == null) return ResponseEntity.notFound().build();
 
-        return ResponseEntity.ok(editorialService.getEditorialById(id));
+        return ResponseEntity.ok(editorial);
     }
 
-    @GetMapping("/search/")
+    @GetMapping("/search")
     public ResponseEntity<List<Editorial>> getEditorialByNombre(@RequestParam(name = "nombre")
                                                                     String nombre) {
 
         var editorial = editorialService.getEditorialByNombre(nombre);
-
         if(editorial == null) return ResponseEntity.notFound().build();
 
-        return ResponseEntity.ok(editorialService.getEditorialByNombre(nombre));
+        return ResponseEntity.ok(editorial);
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Editorial> saveEditorial(@RequestBody Editorial editorial) {
-        return ResponseEntity.ok(editorialService.saveEditorial(editorial));
+    public ResponseEntity<Editorial> saveEditorial(@RequestBody @Valid DtoEditorialCreateUpdate editorial) {
+
+        if(editorial == null) return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(editorialService.saveEditorial(new Editorial(editorial)));
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Editorial> updateEditorial(@RequestBody Editorial editorial,
+    public ResponseEntity<Editorial> updateEditorial(@RequestBody @Valid DtoEditorialCreateUpdate editorial,
                                                      @PathVariable Long id) {
-        return ResponseEntity.ok(editorialService.updateEditorial(editorial, id));
+        if(editorial == null) return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(editorialService.updateEditorial(new Editorial(editorial), id));
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteEditorial(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteEditorial(@PathVariable Long id) {
+
+        if(editorialService.getEditorialById(id) == null) return ResponseEntity.notFound().build();
+
         editorialService.deleteEditorial(id);
+        return ResponseEntity.noContent().build();
     }
 }

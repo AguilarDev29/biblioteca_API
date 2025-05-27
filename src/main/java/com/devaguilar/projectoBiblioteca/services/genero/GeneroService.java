@@ -21,6 +21,11 @@ public class GeneroService implements IGeneroService {
     }
 
     @Override
+    public Genero getGeneroById(Long id) {
+        return generoRepository.findById(id).orElse(null);
+    }
+
+    @Override
     public List<Genero> getGeneroByLibro(String libro) {
         return generoRepository.findByLibrosTitulo(libro);
     }
@@ -31,8 +36,8 @@ public class GeneroService implements IGeneroService {
     }
 
     @Override
-    public Genero updateGenero(Genero genero) {
-        var generoToUpdate = generoRepository.findByNombre(genero.getNombre());
+    public Genero updateGenero(Genero genero, Long id) {
+        var generoToUpdate = generoRepository.findById(id);
         if(generoToUpdate.isPresent()) {
             if(genero.getNombre() != null) generoToUpdate.get()
                     .setNombre(genero.getNombre());
@@ -43,8 +48,10 @@ public class GeneroService implements IGeneroService {
     }
 
     @Override
-    public void deleteGeneroByNombre(String nombre) {
-        var genero = generoRepository.findByNombre(nombre);
+    public void deleteGenero(Long id) {
+        var genero = generoRepository.findById(id);
         genero.ifPresent(generoRepository::delete);
     }
+
+
 }

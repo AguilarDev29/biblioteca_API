@@ -22,9 +22,25 @@ public interface ILibroService {
 
     Libro saveLibro(Libro libro);
 
-    Libro updateLibro(Libro libro);
+    Libro updateLibro(Libro libro, Long id);
 
     void deleteLibro(Long id);
 
     String updateStock(Long id, int stock);
+
+    Libro addGenero(Long id, Long idGenero);
+
+    Libro addAutor(Long id, Long idAutor);
+
+    Libro addEditorial(Long id, Long idEditorial);
+
+    Libro addFormato(Long idLibro, String formato);
+
+    Libro removeGenero(Long id, Long idGenero);
+
+    Libro removeAutor(Long id, Long idAutor);
+
+    Libro removeEditorial(Long id, Long idEditorial);
+
+    Libro removeFormato(Long idLibro, String formato);
 }

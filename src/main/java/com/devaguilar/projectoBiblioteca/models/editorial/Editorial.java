@@ -1,6 +1,7 @@
 package com.devaguilar.projectoBiblioteca.models.editorial;
 
 import com.devaguilar.projectoBiblioteca.models.Base;
+import com.devaguilar.projectoBiblioteca.models.editorial.dto.DtoEditorialCreateUpdate;
 import com.devaguilar.projectoBiblioteca.models.libro.Libro;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -23,4 +24,8 @@ public class Editorial extends Base {
     private String nombre;
     @ManyToMany(mappedBy = "editoriales")
     private List<Libro> libros;
+
+    public Editorial(DtoEditorialCreateUpdate editorial) {
+        this.nombre = editorial.nombre();
+    }
 }

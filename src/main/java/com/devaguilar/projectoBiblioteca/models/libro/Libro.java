@@ -1,6 +1,8 @@
 package com.devaguilar.projectoBiblioteca.models.libro;
 
 import com.devaguilar.projectoBiblioteca.models.Base;
+import com.devaguilar.projectoBiblioteca.models.libro.dto.DtoLibroCreate;
+import com.devaguilar.projectoBiblioteca.models.libro.dto.DtoLibroUpdate;
 import com.devaguilar.projectoBiblioteca.models.prestamo.Prestamo;
 import com.devaguilar.projectoBiblioteca.models.autor.Autor;
 import com.devaguilar.projectoBiblioteca.models.editorial.Editorial;
@@ -13,9 +15,9 @@ import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "libros")
@@ -41,23 +43,39 @@ public class Libro extends Base {
     @JoinTable(name = "generos_libros",
             joinColumns = @JoinColumn(name = "id_libro"),
             inverseJoinColumns = @JoinColumn(name = "id_genero"))
-    private Set<Genero> generos = new HashSet<>();
+    private List<Genero> generos = new ArrayList<>();
     @ManyToMany
     @JoinTable(name = "autores_libros",
     joinColumns = @JoinColumn(name = "id_libro"),
     inverseJoinColumns = @JoinColumn(name = "id_autor"))
     @NotNull
-    private Set<Autor> autores = new HashSet<>();
+    private List<Autor> autores = new ArrayList<>();
     @ManyToMany
     @JoinTable(name = "editoriales_libros",
             joinColumns = @JoinColumn(name = "id_libro"),
             inverseJoinColumns = @JoinColumn(name = "id_editorial"))
-    private Set<Editorial> editoriales = new HashSet<>();
+    private List<Editorial> editoriales = new ArrayList<>();
     @Enumerated(EnumType.STRING)
     @NotBlank
-    private Set<TipoFormato> formatos = new HashSet<>();
+    private List<TipoFormato> formatos = new ArrayList<>();
     @OneToMany(mappedBy = "libro")
-    private List<Prestamo> prestamos;
+    private List<Prestamo> prestamos = new ArrayList<>();
+
+    public Libro(DtoLibroCreate libro) {
+        this.titulo = libro.titulo();
+        this.descripcion = libro.descripcion();
+        this.fechaPublicacion = libro.fechaPublicacion();
+        this.generos = libro.generos();
+        this.autores = libro.autores();
+        this.editoriales = libro.editoriales();
+        this.formatos = libro.formatos();
+    }
+
+    public Libro(DtoLibroUpdate libro) {
+        this.titulo = libro.titulo();
+        this.descripcion = libro.descripcion();
+        this.fechaPublicacion = libro.fechaPublicacion();
+    }
 
     public enum TipoFormato{
         DIGITAL, FISICO, AUDIOLIBRO
