@@ -2,6 +2,7 @@ package com.devaguilar.projectoBiblioteca.models.socio;
 
 import com.devaguilar.projectoBiblioteca.models.Base;
 import com.devaguilar.projectoBiblioteca.models.prestamo.Prestamo;
+import com.devaguilar.projectoBiblioteca.models.socio.dto.DtoSocioCreateUpdate;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
@@ -42,4 +43,13 @@ public class Socio extends Base {
     private String telefono;
     @OneToMany(mappedBy = "socio")
     private List<Prestamo> prestamos;
+
+    public Socio(DtoSocioCreateUpdate socio) {
+        this.apellido = socio.apellido();
+        this.nombre = socio.nombre();
+        this.dni = socio.dni();
+        this.fechaNacimiento = socio.fechaNacimiento();
+        this.email = socio.email();
+        this.telefono = socio.telefono();
+    }
 }

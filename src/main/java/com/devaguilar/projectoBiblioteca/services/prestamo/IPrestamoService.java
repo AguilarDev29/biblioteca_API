@@ -12,11 +12,11 @@ public interface IPrestamoService {
 
     Prestamo savePrestamo(Prestamo prestamo);
 
-    Prestamo updatePrestamo(Prestamo prestamo, long id);
+    Prestamo updatePrestamo(long idLibro, long idSocio, long id);
 
-    String plusDays(Long id,int days);
+    String plusDays(long id,int days);
 
-    String minusDays(Long id, int days);
+    String minusDays(long id, int days);
 
     void cancelarPrestamo(long id);
 

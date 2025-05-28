@@ -1,6 +1,7 @@
 package com.devaguilar.projectoBiblioteca.models.prestamo;
 
 import com.devaguilar.projectoBiblioteca.models.Base;
+import com.devaguilar.projectoBiblioteca.models.prestamo.dto.DtoPrestamoCreate;
 import com.devaguilar.projectoBiblioteca.models.prestamo.dto.DtoPrestamoUpdate;
 import com.devaguilar.projectoBiblioteca.models.socio.Socio;
 import com.devaguilar.projectoBiblioteca.models.libro.Libro;
@@ -36,9 +37,9 @@ public class Prestamo extends Base {
     @NotNull
     private Libro libro;
 
-    public Prestamo(DtoPrestamoUpdate prestamo) {
-        this.socio = prestamo.socio();
+    public Prestamo(DtoPrestamoCreate prestamo) {
         this.libro = prestamo.libro();
+        this.socio = prestamo.socio();
     }
 
     public enum EstadoPrestamo {

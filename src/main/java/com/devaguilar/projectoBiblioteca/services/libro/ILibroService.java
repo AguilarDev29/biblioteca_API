@@ -18,7 +18,7 @@ public interface ILibroService {
 
     List<Libro> getByEditorial(String editorial);
 
-    List<Libro> getByFormato(String formato);
+    List<Libro> getByFormato(Libro.TipoFormato formato);
 
     Libro saveLibro(Libro libro);
 
@@ -34,7 +34,7 @@ public interface ILibroService {
 
     Libro addEditorial(Long id, Long idEditorial);
 
-    Libro addFormato(Long idLibro, String formato);
+    Libro addFormato(Long idLibro, Libro.TipoFormato formato);
 
     Libro removeGenero(Long id, Long idGenero);
 

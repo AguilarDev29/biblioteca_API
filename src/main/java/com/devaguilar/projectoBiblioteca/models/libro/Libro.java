@@ -55,6 +55,9 @@ public class Libro extends Base {
             joinColumns = @JoinColumn(name = "id_libro"),
             inverseJoinColumns = @JoinColumn(name = "id_editorial"))
     private List<Editorial> editoriales = new ArrayList<>();
+    @ElementCollection
+    @CollectionTable(name = "formatos_libros",
+            joinColumns = @JoinColumn(name = "id_libro"))
     @Enumerated(EnumType.STRING)
     @NotBlank
     private List<TipoFormato> formatos = new ArrayList<>();

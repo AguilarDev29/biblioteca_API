@@ -1,7 +1,9 @@
 package com.devaguilar.projectoBiblioteca.services.prestamo;
 
 import com.devaguilar.projectoBiblioteca.models.prestamo.Prestamo;
+import com.devaguilar.projectoBiblioteca.repositories.LibroRepository;
 import com.devaguilar.projectoBiblioteca.repositories.PrestamoRepository;
+import com.devaguilar.projectoBiblioteca.repositories.SocioRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,9 +12,12 @@ import java.util.List;
 public class PrestamoService implements IPrestamoService{
 
     private final PrestamoRepository prestamoRepository;
-
-    public PrestamoService(PrestamoRepository prestamoRepository) {
+    private final LibroRepository libroRepository;
+    private final SocioRepository socioRepository;
+    public PrestamoService(PrestamoRepository prestamoRepository, LibroRepository libroRepository, SocioRepository socioRepository) {
         this.prestamoRepository = prestamoRepository;
+        this.libroRepository = libroRepository;
+        this.socioRepository = socioRepository;
     }
 
     @Override
@@ -31,20 +36,22 @@ public class PrestamoService implements IPrestamoService{
     }
 
     @Override
-    public Prestamo updatePrestamo(Prestamo prestamo, long id) {
+    public Prestamo updatePrestamo(long idLibro, long idSocio, long id) {
+
         var prestamoToUpdate = prestamoRepository.findById(id);
+        var libro = libroRepository.findById(idLibro);
+        var socio = socioRepository.findById(idSocio);
+
         if(prestamoToUpdate.isPresent()){
-            if(prestamoToUpdate.get().getLibro() != null) prestamoToUpdate.get()
-                    .setLibro(prestamo.getLibro());
-            if(prestamoToUpdate.get().getSocio() != null) prestamoToUpdate.get()
-                    .setSocio(prestamo.getSocio());
+            libro.ifPresent(value -> prestamoToUpdate.get().setLibro(value));
+            socio.ifPresent(value -> prestamoToUpdate.get().setSocio(value));
             return prestamoRepository.save(prestamoToUpdate.get());
         }
         return null;
     }
 
     @Override
-    public String plusDays(Long id, int days) {
+    public String plusDays(long id, int days) {
         var prestamo = prestamoRepository.findById(id);
         if(prestamo.isPresent()){
             prestamo.get().setFechaLimite(prestamo.get().getFechaLimite().plusDays(days));
@@ -55,7 +62,7 @@ public class PrestamoService implements IPrestamoService{
     }
 
     @Override
-    public String minusDays(Long id, int days) {
+    public String minusDays(long id, int days) {
         var prestamo = prestamoRepository.findById(id);
         if(prestamo.isPresent()){
             prestamo.get().setFechaLimite(prestamo.get().getFechaLimite().minusDays(days));

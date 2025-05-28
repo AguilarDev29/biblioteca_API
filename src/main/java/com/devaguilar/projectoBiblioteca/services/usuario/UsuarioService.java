@@ -41,7 +41,7 @@ public class UsuarioService implements IUsuarioService {
         if(usuarioToUpdate != null) {
             if (usuario.getUsername() != null) usuarioToUpdate.setUsername(usuario.getUsername());
             if (usuario.getPassword() != null) usuarioToUpdate.setPassword(usuario.getPassword());
-            if (usuario.getRole() != null) usuarioToUpdate.setRole(usuario.getRole());
+            if (usuario.getRoles() != null) usuarioToUpdate.setRoles(usuario.getRoles());
 
             return usuarioRepository.save(usuarioToUpdate);
         }

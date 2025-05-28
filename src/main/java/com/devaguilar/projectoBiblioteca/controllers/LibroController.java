@@ -33,18 +33,16 @@ public class LibroController {
         return ResponseEntity.ok(libro);
     }
 
-    @GetMapping("/search")
-    public ResponseEntity<List<Libro>> getLibroByTitulo(@RequestParam(name = "titulo")
-                                                            String titulo) {
+    @GetMapping("/search/titulo/{titulo}")
+    public ResponseEntity<List<Libro>> getLibroByTitulo(@PathVariable String titulo) {
         var libro = libroService.getByTitulo(titulo);
         if(libro == null) return ResponseEntity.notFound().build();
 
         return ResponseEntity.ok(libro);
     }
 
-    @GetMapping("/search")
-    public ResponseEntity<List<Libro>> getLibroByAutor(@RequestParam(name = "autor")
-                                                           String autor) {
+    @GetMapping("/search/autor/{autor}")
+    public ResponseEntity<List<Libro>> getLibroByAutor(@PathVariable String autor) {
 
         var libro = libroService.getByAutor(autor);
         if(libro == null) return ResponseEntity.notFound().build();
@@ -52,9 +50,8 @@ public class LibroController {
         return ResponseEntity.ok(libro);
     }
 
-    @GetMapping("/search")
-    public ResponseEntity<List<Libro>> getLibroByGenero(@RequestParam(name = "genero")
-                                                            String genero) {
+    @GetMapping("/search/genero/{genero}")
+    public ResponseEntity<List<Libro>> getLibroByGenero(@PathVariable String genero) {
 
         var libro = libroService.getByGenero(genero);
         if(libro == null) return ResponseEntity.notFound().build();
@@ -62,9 +59,8 @@ public class LibroController {
         return ResponseEntity.ok(libro);
     }
 
-    @GetMapping("/search")
-    public ResponseEntity<List<Libro>> getLibroByEditorial(@RequestParam(name = "editorial")
-                                                               String editorial) {
+    @GetMapping("/search/editorial/{editorial}")
+    public ResponseEntity<List<Libro>> getLibroByEditorial(@PathVariable String editorial) {
 
         var libro = libroService.getByEditorial(editorial);
         if(libro == null) return ResponseEntity.notFound().build();
@@ -72,9 +68,8 @@ public class LibroController {
         return ResponseEntity.ok(libro);
     }
 
-    @GetMapping("/search")
-    public ResponseEntity<List<Libro>> getLibroByFormato(@RequestParam(name = "formato")
-                                                             String formato) {
+    @GetMapping("/search/formato/{formato}")
+    public ResponseEntity<List<Libro>> getLibroByFormato(@PathVariable Libro.TipoFormato formato) {
 
         var libro = libroService.getByFormato(formato);
         if(libro == null) return ResponseEntity.notFound().build();
@@ -142,7 +137,7 @@ public class LibroController {
     }
 
     @PutMapping("/update/formato/{idLibro}/{formato}")
-    public ResponseEntity<Libro> addFormato(@PathVariable Long idLibro, @PathVariable String formato) {
+    public ResponseEntity<Libro> addFormato(@PathVariable Long idLibro, @PathVariable Libro.TipoFormato formato) {
 
         var libro = libroService.addFormato(idLibro, formato);
         if(libro == null) return ResponseEntity.notFound().build();

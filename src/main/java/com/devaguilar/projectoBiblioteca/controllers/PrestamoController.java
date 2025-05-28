@@ -1,6 +1,7 @@
 package com.devaguilar.projectoBiblioteca.controllers;
 
 import com.devaguilar.projectoBiblioteca.models.prestamo.Prestamo;
+import com.devaguilar.projectoBiblioteca.models.prestamo.dto.DtoPrestamoCreate;
 import com.devaguilar.projectoBiblioteca.models.prestamo.dto.DtoPrestamoUpdate;
 import com.devaguilar.projectoBiblioteca.services.prestamo.IPrestamoService;
 import org.springframework.http.ResponseEntity;
@@ -34,11 +35,11 @@ public class PrestamoController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Prestamo> savePrestamo(@RequestBody Prestamo prestamo){
+    public ResponseEntity<Prestamo> savePrestamo(@RequestBody DtoPrestamoCreate prestamo){
 
         if(prestamo == null) return ResponseEntity.badRequest().build();
 
-        return ResponseEntity.ok(prestamoService.savePrestamo(prestamo));
+        return ResponseEntity.ok(prestamoService.savePrestamo(new Prestamo(prestamo)));
     }
 
     @PutMapping("/update/{id}")
@@ -46,7 +47,7 @@ public class PrestamoController {
 
         if(prestamoService.getPrestamoById(id) == null) return ResponseEntity.notFound().build();
 
-        return ResponseEntity.ok(prestamoService.updatePrestamo(new Prestamo(prestamo), id));
+        return ResponseEntity.ok(prestamoService.updatePrestamo(prestamo.idLibro(), prestamo.idSocio(), id));
     }
 
     @PutMapping("/update/plus/{id}/{days}")

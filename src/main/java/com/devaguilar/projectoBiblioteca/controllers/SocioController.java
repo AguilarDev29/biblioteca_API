@@ -1,6 +1,7 @@
 package com.devaguilar.projectoBiblioteca.controllers;
 
 import com.devaguilar.projectoBiblioteca.models.socio.Socio;
+import com.devaguilar.projectoBiblioteca.models.socio.dto.DtoSocioCreateUpdate;
 import com.devaguilar.projectoBiblioteca.services.socio.ISocioService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -41,20 +42,20 @@ public class SocioController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Socio> saveSocio(@RequestBody Socio socio) {
+    public ResponseEntity<Socio> saveSocio(@RequestBody DtoSocioCreateUpdate socio) {
 
         if(socio == null) return ResponseEntity.notFound().build();
 
-        return ResponseEntity.ok(socioService.saveSocio(socio));
+        return ResponseEntity.ok(socioService.saveSocio(new Socio(socio)));
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Socio> updateSocio(@RequestBody Socio socio,
+    public ResponseEntity<Socio> updateSocio(@RequestBody DtoSocioCreateUpdate socio,
                                              @PathVariable Long id) {
 
         if(socioService.getSocioById(id) == null) return ResponseEntity.notFound().build();
 
-        return ResponseEntity.ok(socioService.updateSocio(socio, id));
+        return ResponseEntity.ok(socioService.updateSocio(new Socio(socio), id));
     }
 
     @DeleteMapping("/delete/{id}")

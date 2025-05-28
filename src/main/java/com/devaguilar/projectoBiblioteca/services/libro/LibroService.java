@@ -46,17 +46,17 @@ public class LibroService implements ILibroService {
 
     @Override
     public List<Libro> getByGenero(String genero) {
-        return libroRepository.findByGeneroNombre(genero);
+        return libroRepository.findByGenerosNombreContains(genero);
     }
 
     @Override
     public List<Libro> getByEditorial(String editorial) {
-        return libroRepository.findByEditorialNombre(editorial);
+        return libroRepository.findByEditorialesNombreContains(editorial);
     }
 
     @Override
-    public List<Libro> getByFormato(String formato) {
-        return libroRepository.findByFormatos(formato);
+    public List<Libro> getByFormato(Libro.TipoFormato formato) {
+        return libroRepository.findByFormatosContains(formato);
     }
 
     @Override
@@ -143,11 +143,11 @@ public class LibroService implements ILibroService {
     }
 
     @Override
-    public Libro addFormato(Long idLibro, String formato) {
+    public Libro addFormato(Long idLibro, Libro.TipoFormato formato) {
         var libroToUpdate = libroRepository.findById(idLibro);
         if (libroToUpdate.isPresent()) {
             libroToUpdate.get().getFormatos()
-                    .add(Libro.TipoFormato.valueOf(formato));
+                    .add(formato);
             return libroRepository.save(libroToUpdate.get());
         }
         return null;
